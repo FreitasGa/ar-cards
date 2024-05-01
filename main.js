@@ -1,27 +1,31 @@
-let length = 10;
+let length = 5;
 
 function load() {
-  console.info("Loading markers...");
-
   let sceneEl = document.getElementById("scene");
+  let assetsEl = document.getElementById("assets");
 
   for (let i = 0; i < length; i++) {
     let marker = "marker-" + i;
+
+    let assetEl = document.createElement("a-asset-item");
+    assetEl.setAttribute("id", marker);
+    assetEl.setAttribute("src", "https://raw.githubusercontent.com/FreitasGa/ar-cards/main/public/model-" + i + "/model.gltf");
+    assetsEl.appendChild(assetEl);
 
     let markerEl = document.createElement("a-marker");
     markerEl.setAttribute("id", marker);
     markerEl.setAttribute("value", i);
     markerEl.setAttribute("type", "barcode");
-    markerEl.setAttribute("emitevents");
-    markerEl.setAttribute("register-events");
-    
-    let boxEl = document.createElement("a-box");
-    boxEl.setAttribute("position", "0 0.5 0");
-    boxEl.setAttribute("scale", "2.0 2.0 2.0");
-    boxEl.setAttribute("color", "red");
-    
-    markerEl.appendChild(boxEl);
+    markerEl.setAttribute("emitevents", "");
+    markerEl.setAttribute("registerevents", "");
     sceneEl.appendChild(markerEl);
+    
+    let modelEl = document.createElement("a-entity");
+    modelEl.setAttribute("gltf-model", "#" + marker);
+    modelEl.setAttribute("scale", "0.03 0.03 0.03");
+    modelEl.setAttribute("position", "0 0 0");
+    modelEl.setAttribute("rotation", "-90 0 0")
+    markerEl.appendChild(modelEl);
   }
 }
 
@@ -43,6 +47,6 @@ AFRAME.registerComponent("markers", {
   init: load,
 });
 
-AFRAME.registerComponent("register-events", {
+AFRAME.registerComponent("registerevents", {
   init: register,
 });
