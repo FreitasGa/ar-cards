@@ -9,7 +9,7 @@ function load() {
 
     let assetEl = document.createElement("a-asset-item");
     assetEl.setAttribute("id", marker);
-    assetEl.setAttribute("src", "https://raw.githubusercontent.com/FreitasGa/ar-cards/main/public/model-" + i + "/model.gltf");
+    assetEl.setAttribute("src", "https://raw.githubusercontent.com/FreitasGa/ar-cards/main/assets/model-" + i + "/model.gltf");
     assetsEl.appendChild(assetEl);
 
     let markerEl = document.createElement("a-marker");
