@@ -16,15 +16,20 @@ function load() {
     markerEl.setAttribute("id", marker);
     markerEl.setAttribute("value", i);
     markerEl.setAttribute("type", "barcode");
-    markerEl.setAttribute("emitevents", "");
-    markerEl.setAttribute("registerevents", "");
+    markerEl.setAttribute("raycaster", "objects: .clickable;");
+    markerEl.setAttribute("cursor", "fuse: false; rayOrigin: mouse;");
+    markerEl.setAttribute("smooth", true);
+    markerEl.setAttribute("emitevents", true);
+    markerEl.setAttribute("registerevents", true);
     sceneEl.appendChild(markerEl);
     
     let modelEl = document.createElement("a-entity");
     modelEl.setAttribute("gltf-model", "#" + marker);
     modelEl.setAttribute("scale", "0.03 0.03 0.03");
     modelEl.setAttribute("position", "0 0 0");
-    modelEl.setAttribute("rotation", "-90 0 0")
+    modelEl.setAttribute("rotation", "-90 0 0");
+    modelEl.setAttribute("class", "clickable");
+    modelEl.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10;");
     markerEl.appendChild(modelEl);
   }
 }
